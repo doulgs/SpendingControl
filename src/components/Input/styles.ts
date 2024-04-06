@@ -8,18 +8,18 @@ export const Container = styled.View`
 `;
 export const InputText = styled.TextInput`
   flex: 1;
-  padding: 10px;
+  padding: 10px 10px 10px 2px;
   font-size: ${(props) => props.theme.Size.md};
   color: ${(props) => props.theme.Colors.Textcolor[700]};
 `;
 export const ContainerIcon = styled.View`
-  width: 60px;
+  width: 40px;
   align-items: center;
   justify-content: center;
-  border-right-width: 1px;
 `;
-export const Title = styled.Text`
+export const MessageError = styled.Text`
+  font-weight: 600;
   margin-left: ${(props) => props.theme.Size.xs};
-  font-size: ${(props) => props.theme.Size.lg};
-  color: ${(props) => props.theme.Colors.Textcolor[700]};
+  font-size: ${(props) => props.theme.Size.md};
+  color: ${(props) => props.theme.Colors.Error};
 `;

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
-import { StyleProp, TextInputProps, ViewStyle } from "react-native";
+import { StyleProp, TextInputProps, View, ViewStyle } from "react-native";
 import { useTheme } from "styled-components/native";
-import { Container, ContainerIcon, InputText, Title } from "./styles";
+import { Container, ContainerIcon, InputText, MessageError } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 
 interface Props extends TextInputProps {
@@ -9,6 +9,10 @@ interface Props extends TextInputProps {
   children?: ReactNode;
   variant?: "SIMPLE" | "EXPOSED";
   widthPercent?: number;
+  errorMessage?: string;
+  iconName: keyof typeof Ionicons.glyphMap;
+  IconSize?: number;
+  iconColor?: string;
 }
 
 function Input({
@@ -16,39 +20,45 @@ function Input({
   variant = "SIMPLE",
   children,
   widthPercent,
+  errorMessage,
+  iconName,
+  IconSize = 20,
+  iconColor = "#6d6d6d",
   ...rest
 }: Props) {
   const { Colors } = useTheme();
 
   const WIDTH_PERCENT: StyleProp<ViewStyle> = {
     width: widthPercent ? `${widthPercent}%` : "100%",
+    borderColor: errorMessage ? Colors.Error : Colors.Textcolor[700],
   };
 
+  const colorIcon = errorMessage ? Colors.Error : iconColor;
+  const colorText = errorMessage ? Colors.Error : Colors.Textcolor[700];
+
   return (
-    <Container style={WIDTH_PERCENT}>
-      {children && children}
-      <InputText
-        placeholderTextColor={Colors.Textcolor[500]}
-        autoCapitalize="none"
-        autoCorrect={false}
-        {...rest}
-      />
-    </Container>
+    <View>
+      {errorMessage && <MessageError>{errorMessage}</MessageError>}
+      <Container style={WIDTH_PERCENT}>
+        {iconName && (
+          <ContainerIcon>
+            <Ionicons name={iconName} size={IconSize} color={colorIcon} />
+          </ContainerIcon>
+        )}
+        <InputText
+          placeholderTextColor={Colors.Textcolor[500]}
+          autoCapitalize="none"
+          autoCorrect={false}
+          style={{ paddingLeft: iconName ? 0 : 16, color: colorText }}
+          {...rest}
+        />
+      </Container>
+    </View>
   );
 }
 
-interface IconProps {
-  name: keyof typeof Ionicons.glyphMap;
-  size?: number;
-  color?: string;
-}
-
-function Icon({ name, color = "#3a3a3a", size = 24 }: IconProps) {
-  return (
-    <ContainerIcon>
-      <Ionicons name={name} size={size} color={color} />
-    </ContainerIcon>
-  );
+function Icon() {
+  return null;
 }
 
 Input.Icone = Icon;
