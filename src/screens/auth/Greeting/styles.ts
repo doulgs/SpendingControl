@@ -1,3 +1,4 @@
+import * as Animatable from "react-native-animatable";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
@@ -11,13 +12,13 @@ export const ConatainerImage = styled.View`
   align-items: center;
 `;
 
-export const Image = styled.Image`
+export const Image = styled(Animatable.Image)`
   width: 100%;
   height: 50%;
   left: 10px;
 `;
 
-export const ConatainerForm = styled.View`
+export const ConatainerForm = styled(Animatable.View)`
   flex: 0.7;
   overflow: hidden;
   align-items: center;
