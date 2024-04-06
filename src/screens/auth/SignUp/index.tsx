@@ -1,58 +1,135 @@
 import React, { useState } from "react";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
-import { Container, Scroll, Title } from "./styles";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import { Input } from "../../../components/Input";
 import { Button } from "../../../components/Button";
 import { useTheme } from "styled-components/native";
 
+import { Container, Scroll, Title } from "./styles";
+import { Alert } from "react-native";
+
+type FormData = {
+  apelido: string;
+  nome: string;
+  celular: string;
+  email: string;
+  senha: string;
+};
+
+const schema = yup.object({
+  apelido: yup.string().required("Campo Apelido é obrigatorio!"),
+  nome: yup.string().required("Campo Nome é obrigatorio!"),
+  celular: yup.string().required("Campo Celular é obrigatorio!"),
+  email: yup.string().required("Campo Email é obrigatorio!"),
+  senha: yup
+    .string()
+    .min(6, "A senha deve conter 6 caracteres no minimo")
+    .required("Campo Senha é obrigatorio!"),
+});
+
 const SignUp: React.FC = () => {
   const { Colors } = useTheme();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
 
   const [termos, setTermos] = useState<boolean>(false);
 
-  function handleCadastrar() {}
+  const handleAlertTermos = () => {
+    Alert.alert("Termos de Uso", `Os termos de uso não foram aceitos.`, [
+      { text: "OK" },
+    ]);
+  };
+
+  const handleCadastrar = (data: FormData) => {
+    console.log(data);
+  };
 
   return (
     <Scroll>
       <Container>
         <Title>Dados Pessoas</Title>
-        <Input placeholder="Digite aqui seu apelido" keyboardType="default">
-          <Input.Icone name={"person"} />
-        </Input>
-
-        <Input
-          placeholder="Digite aqui seu nome completo"
-          keyboardType="default"
-        >
-          <Input.Icone name={"person"} />
-        </Input>
-
-        <Input placeholder="Digite aqui seu telefone" keyboardType="number-pad">
-          <Input.Icone name={"phone-portrait"} />
-        </Input>
+        <Controller
+          control={control}
+          name="apelido"
+          render={({ field: { value, onChange } }) => (
+            <Input
+              placeholder="Digite aqui seu apelido"
+              keyboardType="default"
+              value={value}
+              onChangeText={onChange}
+              iconName="person"
+              errorMessage={errors.apelido?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="nome"
+          render={({ field: { value, onChange } }) => (
+            <Input
+              placeholder="Digite aqui seu nome completo"
+              keyboardType="default"
+              value={value}
+              onChangeText={onChange}
+              iconName="person"
+              errorMessage={errors.nome?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="celular"
+          render={({ field: { value, onChange } }) => (
+            <Input
+              placeholder="Digite aqui seu telefone"
+              keyboardType="number-pad"
+              value={value}
+              onChangeText={onChange}
+              iconName="phone-portrait"
+              errorMessage={errors.celular?.message}
+            />
+          )}
+        />
 
         <Title>Cadastro</Title>
-        <Input placeholder="Digite aqui seu email" keyboardType="email-address">
-          <Input.Icone name={"mail"} />
-        </Input>
-
-        <Input
-          placeholder="Digite aqui sua senha"
-          keyboardType="default"
-          secureTextEntry
-        >
-          <Input.Icone name={"key"} />
-        </Input>
-
-        <Input
-          placeholder="Cofirme sua senha"
-          keyboardType="default"
-          secureTextEntry
-        >
-          <Input.Icone name={"key-outline"} />
-        </Input>
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { value, onChange } }) => (
+            <Input
+              placeholder="Digite aqui seu email"
+              keyboardType="email-address"
+              value={value}
+              onChangeText={onChange}
+              iconName="mail"
+              errorMessage={errors.email?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="senha"
+          render={({ field: { value, onChange } }) => (
+            <Input
+              placeholder="Digite aqui sua senha"
+              keyboardType="default"
+              secureTextEntry
+              value={value}
+              onChangeText={onChange}
+              iconName="key"
+              errorMessage={errors.senha?.message}
+            />
+          )}
+        />
 
         <BouncyCheckbox
           size={25}
@@ -71,7 +148,7 @@ const SignUp: React.FC = () => {
         <Button
           title="Cadastrar"
           disabled={!termos}
-          onPress={handleCadastrar}
+          onPress={termos ? handleSubmit(handleCadastrar) : handleAlertTermos}
         />
       </Container>
     </Scroll>
