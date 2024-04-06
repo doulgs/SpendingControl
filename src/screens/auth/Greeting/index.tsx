@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import SignIn from "../SignIn";
 
@@ -15,6 +15,7 @@ import { Button } from "../../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 
 import { useTheme } from "styled-components/native";
+import { Keyboard } from "react-native";
 
 const Greeting: React.FC = ({}) => {
   const { Colors } = useTheme();
@@ -23,6 +24,9 @@ const Greeting: React.FC = ({}) => {
   const bottomSheetSignIn = useRef<BottomSheet>(null);
   const openSignIn = () => bottomSheetSignIn.current?.snapToIndex(1);
   const closeSignIn = () => bottomSheetSignIn.current?.close();
+  const handleChange = useCallback((index: number) => {
+    Keyboard.dismiss();
+  }, []);
 
   return (
     <>
@@ -52,11 +56,12 @@ const Greeting: React.FC = ({}) => {
 
       <BottomSheet
         ref={bottomSheetSignIn}
-        snapPoints={[0.001, "40%"]}
+        snapPoints={[0.001, "50%"]}
         index={0}
         enablePanDownToClose={true}
         animationConfigs={{ duration: 500 }}
         backgroundStyle={{ backgroundColor: Colors.Background[200] }}
+        onChange={handleChange}
       >
         <SignIn />
       </BottomSheet>
