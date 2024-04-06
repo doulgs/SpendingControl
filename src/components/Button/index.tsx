@@ -29,11 +29,11 @@ const Button: React.FC<Props> = ({
     width: widthPercent ? `${widthPercent}%` : "100%",
   };
 
-  const backcolor = disabled ? Colors.Primary[800] : Colors.Primary[500];
+  const backcolor = disabled ? Colors.Textcolor[500] : Colors.Primary[500];
 
   return (
     <Container
-      activeOpacity={0.7}
+      activeOpacity={disabled ? 1 : 0.7}
       disabled={isLoading}
       style={WIDTH_PERCENT}
       {...rest}
