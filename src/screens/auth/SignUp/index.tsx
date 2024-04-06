@@ -11,6 +11,7 @@ import { useTheme } from "styled-components/native";
 
 import { Container, Scroll, Title } from "./styles";
 import { Alert } from "react-native";
+import { useAuth } from "../../../contexts/authContext";
 
 type FormData = {
   apelido: string;
@@ -33,6 +34,8 @@ const schema = yup.object({
 
 const SignUp: React.FC = () => {
   const { Colors } = useTheme();
+  const { loadingAuth, cadastarUsuario } = useAuth();
+
   const {
     control,
     handleSubmit,
@@ -50,7 +53,13 @@ const SignUp: React.FC = () => {
   };
 
   const handleCadastrar = (data: FormData) => {
-    console.log(data);
+    cadastarUsuario({
+      Apelido: data.apelido,
+      Nome: data.nome,
+      Telefone: data.celular,
+      Email: data.email,
+      Senha: data.senha,
+    });
   };
 
   return (
@@ -148,6 +157,7 @@ const SignUp: React.FC = () => {
         <Button
           title="Cadastrar"
           disabled={!termos}
+          isLoading={loadingAuth}
           onPress={termos ? handleSubmit(handleCadastrar) : handleAlertTermos}
         />
       </Container>

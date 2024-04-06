@@ -9,6 +9,7 @@ import { Button } from "../../../components/Button";
 import { useTheme } from "styled-components/native";
 
 import { Container, Title } from "./styles";
+import { useAuth } from "../../../contexts/authContext";
 
 type FormData = {
   email: string;
@@ -24,6 +25,7 @@ const schema = yup.object({
 });
 
 const SignIn: React.FC = () => {
+  const { loadingAuth, acessarApp } = useAuth();
   const {
     control,
     handleSubmit,
@@ -33,7 +35,7 @@ const SignIn: React.FC = () => {
   });
 
   const handleAcessar = (data: FormData) => {
-    console.log(data);
+    acessarApp(data.email, data.senha);
   };
 
   return (
@@ -69,7 +71,11 @@ const SignIn: React.FC = () => {
         )}
       />
 
-      <Button title="Cadastrar" onPress={handleSubmit(handleAcessar)} />
+      <Button
+        title="Acessar"
+        isLoading={loadingAuth}
+        onPress={handleSubmit(handleAcessar)}
+      />
     </Container>
   );
 };

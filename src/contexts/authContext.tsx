@@ -9,6 +9,9 @@ interface AuthContextProps {
   user: UsuarioProps | null;
   isAuthenticated: boolean;
   loadingAuth: boolean;
+
+  cadastarUsuario: (dadosUsuario: UsuarioProps) => void;
+  acessarApp: (email: string, senha: string) => void;
   signOut: () => void;
 }
 
@@ -23,6 +26,24 @@ export const AuthProvider = ({ children }: any) => {
 
   const [user, setUser] = useState<UsuarioProps | null>(null);
   const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
+
+  async function cadastarUsuario(dadosUsuario: UsuarioProps) {
+    setLoadingAuth(true);
+    await tabelaUsuarios.create(dadosUsuario).then(() => {
+      navigate("Greeting");
+    });
+    setLoadingAuth(false);
+  }
+
+  function acessarApp(email: string, senha: string) {
+    const retorno = tabelaUsuarios.searchByEmail(email);
+
+    if (retorno?.Email === email && retorno?.Senha === senha) {
+      setUser(retorno);
+    } else {
+      Alert.alert("Login", "Usuário ou senha inválidos!");
+    }
+  }
 
   function signOut() {
     Alert.alert("Sair", `Deseja realmente finalizar a aplicação?`, [
@@ -40,6 +61,8 @@ export const AuthProvider = ({ children }: any) => {
         user,
         isAuthenticated: !!user,
         loadingAuth,
+        cadastarUsuario,
+        acessarApp,
         signOut,
       }}
     >

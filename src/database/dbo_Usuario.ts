@@ -1,4 +1,5 @@
 import { useSQLiteContext } from "expo-sqlite/next";
+import { Alert } from "react-native";
 
 export type UsuarioProps = {
   Handle?: number;
@@ -20,6 +21,14 @@ export function dbo_Usuario() {
 
   async function create(usuario: UsuarioProps) {
     try {
+      // Verificar se o email já existe na base de dados
+      const existingUser = searchByEmail(usuario.Email);
+      if (existingUser) {
+        return Alert.alert("Cadastro", `O email já está em uso.`, [
+          { text: "OK" },
+        ]);
+      }
+
       const statement = database.prepareSync(
         `INSERT INTO Usuario
           (Apelido, Nome, Telefone, Email, Senha)
@@ -90,5 +99,20 @@ export function dbo_Usuario() {
     }
   }
 
-  return { create, update, all, search };
+  function searchByEmail(email: string) {
+    try {
+      const statement = database.prepareSync(
+        `SELECT * FROM Usuario WHERE Email = $email`
+      );
+      const result = statement.executeSync<UsuarioProps>({
+        $email: email,
+      });
+      return result.getFirstSync();
+    } catch (error) {
+      console.error("Erro ao buscar usuário:", error);
+      throw new Error(`Erro ao buscar usuário: ${error}`);
+    }
+  }
+
+  return { create, update, all, search, searchByEmail };
 }
