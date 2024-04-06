@@ -36,7 +36,7 @@ export default function AuthRoutes() {
       <Stack.Screen
         name="SignUp"
         component={SignUp}
-        options={{ headerShown: false }}
+        options={{ headerTitle: "Cadastrar-se" }}
       />
     </Stack.Navigator>
   );

@@ -19,7 +19,7 @@ export const Image = styled(Animatable.Image)`
 `;
 
 export const ConatainerForm = styled(Animatable.View)`
-  flex: 0.7;
+  flex: 1;
   overflow: hidden;
   align-items: center;
   justify-content: center;
