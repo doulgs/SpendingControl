@@ -10,33 +10,6 @@ import {
 import { FlashList } from "@shopify/flash-list";
 import { LayoutMovimentos } from "../../../components/Layout-Movimentos";
 
-const arrayFake = [
-  {
-    Handle: 1,
-    HandleWeb: 0,
-    HandleUsuario: 1,
-    HandleCategoria: 1,
-    Descricao: "OutroValor1",
-    Valor: 320,
-    Data: "2024-04-07T14:30:15.500Z",
-    Status: "pendente",
-    Created_at: "2024-04-07T14:30:15.500Z",
-    Updated_at: "2024-04-07T14:30:15.500Z",
-  },
-  {
-    Handle: 2,
-    HandleWeb: 0,
-    HandleUsuario: 1,
-    HandleCategoria: 1,
-    Descricao: "OutroValor2",
-    Valor: 10000,
-    Data: "2024-04-07T14:30:15.500Z",
-    Status: "pendente",
-    Created_at: "2024-04-07T14:30:15.500Z",
-    Updated_at: "2024-04-07T14:30:15.500Z",
-  },
-];
-
 const MemoizedLayout = React.memo(LayoutMovimentos);
 
 const Home: React.FC = () => {
@@ -67,7 +40,7 @@ const Home: React.FC = () => {
           <Title>Minhas Contas</Title>
         </ContainerTitle>
         <FlashList
-          data={arrayFake}
+          data={movimentos}
           renderItem={({ item }) => <MemoizedLayout data={item} />}
           estimatedItemSize={80}
         />
