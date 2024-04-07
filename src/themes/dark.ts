@@ -1,4 +1,4 @@
-export const THEME_LIGHT = {
+export const THEME_DARK = {
   Colors: {
     Primary: {
       300: "#98b3aa",

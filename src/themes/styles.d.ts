@@ -6,7 +6,7 @@ declare module "styled-components/native" {
       Primary: {
         300: string;
         500: string;
-        800: string;
+        700: string;
       };
       Secondary: {
         300: string;
