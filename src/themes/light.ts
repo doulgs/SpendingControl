@@ -3,11 +3,11 @@ export const THEME_LIGHT = {
     Primary: {
       300: "#98b3aa",
       500: "#628379", // default
-      800: "#1c2d27",
+      700: "#1c2d27",
     },
 
     Secondary: {
-      300: "#69e2ba",
+      300: "#40C9A8",
       500: "#2ac18d", // default
       700: "#106b4e",
     },
