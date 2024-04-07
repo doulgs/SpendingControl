@@ -67,5 +67,20 @@ export function dbo_Movimentacao() {
     }
   }
 
-  return { create, all, search };
+  function getByUser(handleUser: number) {
+    try {
+      const statement = database.prepareSync(
+        `SELECT * FROM Movimentacao WHERE Handle = $handleUser AND Status LIKE '%pendente%'`
+      );
+      const result = statement.executeSync<MovimentacaoProps>({
+        $handleUser: handleUser,
+      });
+      return result.getAllSync();
+    } catch (error) {
+      console.error("Erro ao buscar movimentação:", error);
+      throw new Error(`Erro ao buscar movimentação: ${error}`);
+    }
+  }
+
+  return { create, all, search, getByUser };
 }
