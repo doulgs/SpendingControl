@@ -1,13 +1,13 @@
-export const THEME_DARK = {
+export const THEME_LIGHT = {
   Colors: {
     Primary: {
       300: "#98b3aa",
       500: "#628379", // default
-      800: "#1c2d27",
+      700: "#1c2d27",
     },
 
     Secondary: {
-      300: "#69e2ba",
+      300: "#40C9A8",
       500: "#2ac18d", // default
       700: "#106b4e",
     },
@@ -29,6 +29,19 @@ export const THEME_DARK = {
       700: "#404040",
       800: "#15141B",
       900: "#121212",
+    },
+
+    Gray: {
+      50: "#edf0fd",
+      100: "#cfd2e4",
+      200: "#b1b3cd",
+      300: "#9295b8",
+      400: "#7477a3",
+      500: "#5b5d8a",
+      600: "#46496c",
+      700: "#32344e",
+      800: "#1d1f31",
+      900: "#090916",
     },
 
     Success: "#28a745",
