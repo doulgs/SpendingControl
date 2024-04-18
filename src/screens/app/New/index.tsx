@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import { useState } from "react";
 import { useTheme } from "styled-components/native";
 import { ButtonFilter } from "../../../components/Button-Filter";
+import { InputMask } from "../../../components/InputMask";
 import { Text } from "../../../components/Text";
 import {
   Container,
@@ -15,13 +16,17 @@ import {
 const New: React.FC = () => {
   const { Colors } = useTheme();
   const { navigate } = useNavigation();
-  const [movType, setMovType] = React.useState<"RECEITA" | "DESPESA">(
-    "RECEITA"
-  );
+  const [movType, setMovType] = useState<"RECEITA" | "DESPESA">("RECEITA");
+  const [valueMoney, setValueMoney] = useState<string>("");
 
   return (
     <Container>
       <Scroll>
+        <InputMask
+          placeholder="R$ 0,00"
+          value={valueMoney}
+          onChangeText={(t) => setValueMoney(t)}
+        />
         <ContentBtnFilter>
           <ButtonFilter
             title="DESPESA"
@@ -37,6 +42,7 @@ const New: React.FC = () => {
           />
         </ContentBtnFilter>
       </Scroll>
+
       <Footer>
         <FooterContent onPress={() => navigate("Home")}>
           <Text>Cancelar</Text>
