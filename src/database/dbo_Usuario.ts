@@ -1,5 +1,4 @@
 import { useSQLiteContext } from "expo-sqlite/next";
-import { Alert } from "react-native";
 
 export type UsuarioProps = {
   Handle?: number;
@@ -9,11 +8,11 @@ export type UsuarioProps = {
   Telefone: string;
   Email: string;
   Senha: string;
-  Saldo?: number;
   Tema?: string;
   Ativo?: number;
   Created_at?: string;
   Updated_at?: string;
+  VersaoSistema?: string;
 };
 
 export function dbo_Usuario() {
@@ -21,19 +20,11 @@ export function dbo_Usuario() {
 
   async function create(usuario: UsuarioProps) {
     try {
-      // Verificar se o email já existe na base de dados
-      const existingUser = searchByEmail(usuario.Email);
-      if (existingUser) {
-        return Alert.alert("Cadastro", `O email já está em uso.`, [
-          { text: "OK" },
-        ]);
-      }
-
       const statement = database.prepareSync(
         `INSERT INTO Usuario
-          (Apelido, Nome, Telefone, Email, Senha)
+          (Apelido, Nome, Telefone, Email, Senha, Tema, Ativo, VersaoSistema)
          VALUES
-          (?, ?, ?, ?, ?)`
+          (?, ?, ?, ?, ?, ?, ?, ?)`
       );
 
       statement.executeSync([
@@ -42,6 +33,9 @@ export function dbo_Usuario() {
         usuario.Telefone,
         usuario.Email,
         usuario.Senha,
+        usuario.Tema ?? "LIGHT",
+        usuario.Ativo ?? 1,
+        usuario.VersaoSistema ?? "1.0",
       ]);
 
       console.log("Usuário --> ", "Novo registro inserido com sucesso!");
@@ -51,31 +45,7 @@ export function dbo_Usuario() {
     }
   }
 
-  async function update(usuario: UsuarioProps) {
-    try {
-      const statement = database.prepareSync(`
-        UPDATE Usuario
-        SET Apelido = ?, Nome = ?, Telefone = ?, Email = ?, Senha = ?
-        WHERE Handle = ?
-      `);
-
-      statement.executeSync([
-        usuario.Apelido,
-        usuario.Nome,
-        usuario.Telefone,
-        usuario.Email,
-        usuario.Senha,
-        !usuario.Handle,
-      ]);
-
-      console.log("Usuário --> ", "Registro atualizado com sucesso!");
-    } catch (error) {
-      console.error("Erro ao atualizar registro:", error);
-      throw error;
-    }
-  }
-
-  function all() {
+  function getAll() {
     try {
       return database.getAllSync<UsuarioProps>(`SELECT * FROM Usuario`);
     } catch (error) {
@@ -114,5 +84,5 @@ export function dbo_Usuario() {
     }
   }
 
-  return { create, update, all, search, searchByEmail };
+  return { create, getAll, search, searchByEmail };
 }

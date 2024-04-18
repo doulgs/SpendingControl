@@ -3,14 +3,16 @@ import { useSQLiteContext } from "expo-sqlite/next";
 export type MovimentacaoProps = {
   Handle?: number;
   HandleWeb?: number;
-  HandleUsuario: number;
-  HandleCategoria: number;
-  Descricao: string;
+  Tipo: string;
   Valor: number;
-  Data: string;
-  Status: string;
+  Descricao: string;
+  Data?: string;
+  CategoriaHandle?: number;
+  ContaHandle?: number;
+  UsuarioHandle: number; // Adicionando a coluna UsuarioHandle
   Created_at?: string;
   Updated_at?: string;
+  VersaoSistema?: string;
 };
 
 export function dbo_Movimentacao() {
@@ -20,18 +22,20 @@ export function dbo_Movimentacao() {
     try {
       const statement = database.prepareSync(
         `INSERT INTO Movimentacao
-          (HandleUsuario, HandleCategoria, Descricao, Valor, Data, Status)
+          (Tipo, Valor, Descricao, Data, CategoriaHandle, ContaHandle, UsuarioHandle, VersaoSistema)
          VALUES
-          (?, ?, ?, ?, ?, ?)`
+          (?, ?, ?, ?, ?, ?, ?, ?)`
       );
 
       statement.executeSync([
-        movimentacao.HandleUsuario,
-        movimentacao.HandleCategoria,
-        movimentacao.Descricao,
+        movimentacao.Tipo,
         movimentacao.Valor,
-        movimentacao.Data,
-        movimentacao.Status,
+        movimentacao.Descricao,
+        movimentacao.Data ?? new Date().toISOString(),
+        movimentacao.CategoriaHandle || "",
+        movimentacao.ContaHandle || "",
+        movimentacao.UsuarioHandle,
+        movimentacao.VersaoSistema ?? "1.0",
       ]);
 
       console.log("Movimentação --> ", "Novo registro inserido com sucesso!");
@@ -67,20 +71,5 @@ export function dbo_Movimentacao() {
     }
   }
 
-  function getByUser(handleUser: number) {
-    try {
-      const statement = database.prepareSync(
-        `SELECT * FROM Movimentacao WHERE Handle = $handleUser AND Status LIKE '%pendente%'`
-      );
-      const result = statement.executeSync<MovimentacaoProps>({
-        $handleUser: handleUser,
-      });
-      return result.getAllSync();
-    } catch (error) {
-      console.error("Erro ao buscar movimentação:", error);
-      throw new Error(`Erro ao buscar movimentação: ${error}`);
-    }
-  }
-
-  return { create, all, search, getByUser };
+  return { create, all, search };
 }
