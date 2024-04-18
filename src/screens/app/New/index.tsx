@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "styled-components/native";
 import { ButtonFilter } from "../../../components/Button-Filter";
 import { InputMask } from "../../../components/InputMask";
@@ -12,12 +12,41 @@ import {
   FooterSeparator,
   Scroll,
 } from "./styles";
+import { Select } from "../../../components/Select";
+import { dbo_Categoria, CategoriaProps } from "../../../database/dbo_Categoria";
 
 const New: React.FC = () => {
   const { Colors } = useTheme();
   const { navigate } = useNavigation();
+
+  const categoria = dbo_Categoria();
+
   const [movType, setMovType] = useState<"RECEITA" | "DESPESA">("RECEITA");
   const [valueMoney, setValueMoney] = useState<string>("");
+
+  const [categorias, setCategorias] = useState<CategoriaProps[]>([]);
+  const [selectedCategoria, setSelectedCategoria] = useState<CategoriaProps>(
+    {} as CategoriaProps
+  );
+
+  const cat = [
+    {
+      Handle: 1,
+      HandleWeb: 0,
+      Nome: "Teste",
+      Descricao: "Teste de Teste",
+      Created_at: "",
+      Updated_at: "",
+      VersaoSistema: "1.0.0",
+    },
+  ];
+
+  useEffect(() => {
+    function getCategorias() {
+      setCategorias(categoria.all());
+    }
+    getCategorias();
+  }, []);
 
   return (
     <Container>
@@ -41,6 +70,12 @@ const New: React.FC = () => {
             isActive={movType === "RECEITA"}
           />
         </ContentBtnFilter>
+        <Select<CategoriaProps>
+          title="Selecione uma categoria"
+          text="Categoria"
+          options={cat}
+          onChangeSelect={(value) => setSelectedCategoria(value)}
+        />
       </Scroll>
 
       <Footer>

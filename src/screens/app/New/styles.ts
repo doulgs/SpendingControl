@@ -10,6 +10,7 @@ export const Scroll = styled.ScrollView`
 export const ContentBtnFilter = styled.View`
   flex-direction: row;
   gap: 8px;
+  margin: ${(props) => props.theme.Size.md} 0;
 `;
 export const Footer = styled.View`
   flex: 1;
@@ -17,6 +18,7 @@ export const Footer = styled.View`
   max-height: 70px;
   border-top-width: 1px;
   border-color: ${(props) => props.theme.Colors.Background[500]};
+  background-color: ${(props) => props.theme.Colors.Dark[800]};
 `;
 export const FooterContent = styled.TouchableOpacity`
   flex: 1;
