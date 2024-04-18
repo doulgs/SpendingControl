@@ -1,11 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "styled-components/native";
 import { ButtonFilter } from "../../../components/Button-Filter";
 import { InputMask } from "../../../components/InputMask";
 import { Text } from "../../../components/Text";
 import {
   Container,
+  Content,
   ContentBtnFilter,
   Footer,
   FooterContent,
@@ -14,6 +15,7 @@ import {
 } from "./styles";
 import { Select } from "../../../components/Select";
 import { dbo_Categoria, CategoriaProps } from "../../../database/dbo_Categoria";
+import { InputDark } from "../../../components/Input";
 
 const New: React.FC = () => {
   const { Colors } = useTheme();
@@ -51,31 +53,38 @@ const New: React.FC = () => {
   return (
     <Container>
       <Scroll>
-        <InputMask
-          placeholder="R$ 0,00"
-          value={valueMoney}
-          onChangeText={(t) => setValueMoney(t)}
-        />
-        <ContentBtnFilter>
-          <ButtonFilter
-            title="DESPESA"
-            type="DESPESA"
-            onPress={() => setMovType("DESPESA")}
-            isActive={movType === "DESPESA"}
+        <Content>
+          <InputMask
+            placeholder="R$ 0,00"
+            value={valueMoney}
+            onChangeText={(t) => setValueMoney(t)}
           />
-          <ButtonFilter
-            title="RECEITA"
-            type="RECEITA"
-            onPress={() => setMovType("RECEITA")}
-            isActive={movType === "RECEITA"}
+          <ContentBtnFilter>
+            <ButtonFilter
+              title="DESPESA"
+              type="DESPESA"
+              onPress={() => setMovType("DESPESA")}
+              isActive={movType === "DESPESA"}
+            />
+            <ButtonFilter
+              title="RECEITA"
+              type="RECEITA"
+              onPress={() => setMovType("RECEITA")}
+              isActive={movType === "RECEITA"}
+            />
+          </ContentBtnFilter>
+          <InputDark
+            placeholder="Descricao da movimentação"
+            iconName="clipboard-outline"
+            iconColor={Colors.Secondary[500]}
           />
-        </ContentBtnFilter>
-        <Select<CategoriaProps>
-          title="Selecione uma categoria"
-          text="Categoria"
-          options={cat}
-          onChangeSelect={(value) => setSelectedCategoria(value)}
-        />
+          <Select<CategoriaProps>
+            title="Selecione uma categoria"
+            text="Categoria"
+            options={cat}
+            onChangeSelect={(value) => setSelectedCategoria(value)}
+          />
+        </Content>
       </Scroll>
 
       <Footer>

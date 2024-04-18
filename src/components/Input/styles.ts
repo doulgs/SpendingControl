@@ -6,6 +6,13 @@ export const Container = styled.View`
   border-radius: ${(props) => props.theme.Size.sm};
   background-color: ${(props) => props.theme.Colors.Background[100]};
 `;
+export const ContainerDark = styled.View`
+  height: 55px;
+  flex-direction: row;
+  border-width: 1px;
+  border-radius: ${(props) => props.theme.Size.sm};
+  background-color: ${(props) => props.theme.Colors.Dark[700]};
+`;
 export const InputText = styled.TextInput`
   flex: 1;
   padding: 10px 10px 10px 2px;

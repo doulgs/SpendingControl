@@ -7,10 +7,14 @@ export const Container = styled.SafeAreaView`
 export const Scroll = styled.ScrollView`
   padding: ${(props) => props.theme.Size.md};
 `;
+export const Content = styled.View`
+  flex: 1;
+  gap: ${(props) => props.theme.Size.lg};
+`;
 export const ContentBtnFilter = styled.View`
   flex-direction: row;
-  gap: 8px;
-  margin: ${(props) => props.theme.Size.md} 0;
+  margin-top: ${(props) => props.theme.Size.md};
+  gap: ${(props) => props.theme.Size.md};
 `;
 export const Footer = styled.View`
   flex: 1;
