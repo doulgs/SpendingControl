@@ -42,6 +42,13 @@ declare module "styled-components/native" {
         800: string;
         900: string;
       };
+      Dark: {
+        300: string;
+        500: string;
+        700: string;
+        800: string;
+        900: string;
+      };
       Success: string;
       Warning: string;
       Error: string;

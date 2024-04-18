@@ -1,53 +1,74 @@
-import React, { ReactNode } from "react";
+import { Feather } from "@expo/vector-icons";
+import { useTheme } from "styled-components/native";
+import { Text } from "../Text";
 import {
+  Avatar,
   Container,
-  Content,
-  ContentText,
-  Title,
-  SubTitle,
-  ContainerInfo,
-  TitleInfo,
+  ContentBody,
+  ContentFooter,
+  ContentHeader,
+  ContentMov,
+  IconContent,
+  TextContent,
 } from "./styles";
-import { Octicons } from "@expo/vector-icons";
-import { IconLogo } from "../../assets/icons/Icon-Logo";
+import React from "react";
+import { formatarParaMoeda } from "../../utils/formatarParaMoeda";
 
-interface HeaderProps {
-  nameUser: string | undefined;
-  children: ReactNode;
-}
+function Header() {
+  const { Colors } = useTheme();
 
-function Header({ nameUser, children }: HeaderProps) {
+  const [month, setMonth] = React.useState("abril");
+  const [balance, setBalance] = React.useState(0);
+  const [income, setIncome] = React.useState(0);
+  const [expenses, setExpenses] = React.useState(0);
+
+  React.useEffect(() => {}, [month]);
+
   return (
-    <>
-      <Container>
-        <Content>
-          <ContentText>
-            <Title>Olá, {nameUser}</Title>
-            <SubTitle>Mantenha suas contas em dia</SubTitle>
-          </ContentText>
-          <Octicons name="gear" size={24} color="white" />
-        </Content>
-      </Container>
-      {children}
-    </>
+    <Container>
+      <ContentHeader>
+        <Avatar source={{ uri: "https://github.com/doulgs.png" }} />
+        <Text size={20}>{month}</Text>
+        <Avatar source={{ uri: "https://github.com/doulgs.png" }} />
+      </ContentHeader>
+      <ContentBody>
+        <Text size={14} color={Colors.Textcolor[500]}>
+          Saldo em conta
+        </Text>
+        <Text size={32}>{formatarParaMoeda(balance)}</Text>
+        <Feather
+          name="eye"
+          size={24}
+          color="white"
+          style={{ marginVertical: 15 }}
+        />
+      </ContentBody>
+      <ContentFooter>
+        <ContentMov>
+          <IconContent style={{ backgroundColor: Colors.Secondary[700] }}>
+            <Feather name="dollar-sign" size={32} color="white" />
+          </IconContent>
+          <TextContent>
+            <Text size={14} color={Colors.Textcolor[500]}>
+              Receitas
+            </Text>
+            <Text size={20}>{formatarParaMoeda(income)}</Text>
+          </TextContent>
+        </ContentMov>
+        <ContentMov>
+          <IconContent style={{ backgroundColor: Colors.Error }}>
+            <Feather name="dollar-sign" size={32} color="white" />
+          </IconContent>
+          <TextContent>
+            <Text size={14} color={Colors.Textcolor[500]}>
+              Despesas
+            </Text>
+            <Text size={20}>{formatarParaMoeda(expenses)}</Text>
+          </TextContent>
+        </ContentMov>
+      </ContentFooter>
+    </Container>
   );
 }
-
-interface HeaderInfoProps {
-  qtdContas?: number;
-}
-
-function HeaderInfo({ qtdContas = 0 }: HeaderInfoProps) {
-  return (
-    <ContainerInfo>
-      <IconLogo color1="#fff" />
-      <TitleInfo>
-        Você tem {qtdContas} contas {"\n"} cadastrados à serem pagas
-      </TitleInfo>
-    </ContainerInfo>
-  );
-}
-
-Header.Info = HeaderInfo;
 
 export { Header };

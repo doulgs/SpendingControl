@@ -10,7 +10,7 @@ interface Props extends TextInputProps {
   variant?: "SIMPLE" | "EXPOSED";
   widthPercent?: number;
   errorMessage?: string;
-  iconName: keyof typeof Ionicons.glyphMap;
+  iconName?: keyof typeof Ionicons.glyphMap;
   IconSize?: number;
   iconColor?: string;
 }

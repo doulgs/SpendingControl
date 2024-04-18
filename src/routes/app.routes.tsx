@@ -37,7 +37,7 @@ function TabsRoutes() {
         tabBarStyle: {
           elevation: 0,
           borderTopWidth: 0,
-          backgroundColor: Colors.Background[200],
+          backgroundColor: Colors.Dark[800],
         },
         tabBarActiveTintColor: Colors.Secondary[700],
         tabBarInactiveTintColor: Colors.Background[500],
@@ -57,7 +57,15 @@ function TabsRoutes() {
         name="New"
         component={New}
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerTitle: "Movimentação",
+          headerTintColor: Colors.Secondary[700],
+          headerStyle: {
+            borderBottomWidth: 0.5,
+            backgroundColor: Colors.Dark[800],
+            borderColor: Colors.Secondary[700],
+          },
+          tabBarStyle: { display: "none" },
           tabBarIcon: ({ color }) => (
             <Octicons name="log" size={24} color={color} />
           ),

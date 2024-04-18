@@ -1,44 +1,52 @@
-import styled from "styled-components/native";
 import { StatusBar } from "react-native";
+import styled from "styled-components/native";
 
 const STATUS_BAR_HEIGHT = StatusBar.currentHeight;
 
 export const Container = styled.View`
   flex: 1;
-  max-height: ${185 + (STATUS_BAR_HEIGHT ?? 0)}px;
-  background-color: ${(props) => props.theme.Colors.Background[900]};
+  height: ${250 + (STATUS_BAR_HEIGHT ?? 0)}px;
+  padding: ${STATUS_BAR_HEIGHT ?? 0}px ${(props) => props.theme.Size.md}
+    ${(props) => props.theme.Size.sm} ${(props) => props.theme.Size.md};
+  background-color: ${(props) => props.theme.Colors.Dark[800]};
+  border-bottom-left-radius: ${(props) => props.theme.Size.lg};
+  border-bottom-right-radius: ${(props) => props.theme.Size.lg};
+  overflow: hidden;
 `;
-export const Content = styled.View`
+export const ContentHeader = styled.View`
   flex: 1;
+  height: ${40}px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: ${(props) => props.theme.Size.lg};
 `;
-export const ContentText = styled.View``;
-export const Title = styled.Text`
-  font-weight: 600;
-  font-size: ${(props) => props.theme.Size.lg};
-  color: ${(props) => props.theme.Colors.Textcolor[300]};
+export const Avatar = styled.Image`
+  width: ${40}px;
+  height: ${40}px;
+  border-radius: 10px;
 `;
-export const SubTitle = styled.Text`
-  font-size: ${(props) => props.theme.Size.md};
-  color: ${(props) => props.theme.Colors.Textcolor[300]};
-`;
-export const ContainerInfo = styled.View`
+export const ContentBody = styled.View`
   flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
+  height: ${60}px;
   align-items: center;
-  top: -40px;
-  max-height: 80px;
-  padding: 0 40px;
-  margin: 0 ${(props) => props.theme.Size.lg};
-  border-radius: ${(props) => props.theme.Size.md};
-  background-color: ${(props) => props.theme.Colors.Gray[700]};
+  justify-content: center;
 `;
-export const TitleInfo = styled.Text`
-  text-align: center;
-  font-size: ${(props) => props.theme.Size.md};
-  color: ${(props) => props.theme.Colors.Textcolor[300]};
+export const ContentFooter = styled.View`
+  flex: 1;
+  height: ${40}px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+export const ContentMov = styled.View`
+  flex-direction: row;
+`;
+export const TextContent = styled.View``;
+export const IconContent = styled.View`
+  width: ${50}px;
+  height: ${50}px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-right: ${(props) => props.theme.Size.sm};
 `;
