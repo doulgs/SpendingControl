@@ -2326,6 +2326,13 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.12.tgz"
   integrity sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==
 
+"@types/react-native-modern-datepicker@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@types/react-native-modern-datepicker/-/react-native-modern-datepicker-1.0.5.tgz"
+  integrity sha512-YO9t6nyKCLa90PPLq2OsBhGQU9PlRKSrzpYbz7hbeQ0RJDft1YiNTqktQbRN1g64qmlmjNPbMOFSuV7NpdgNzg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@~18.2.45":
   version "18.2.74"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.74.tgz"
@@ -3244,6 +3251,11 @@ date-and-time@0.9.0:
   version "0.9.0"
   resolved "https://registry.npmjs.org/date-and-time/-/date-and-time-0.9.0.tgz"
   integrity sha512-4JybB6PbR+EebpFx/KyR5Ybl+TcdXMLIJkyYsCx3P4M4CWGMuDyFF19yh6TyasMAIF5lrsgIxiSHBXh2FFc7Fg==
+
+date-fns@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.npmjs.org/date-fns/-/date-fns-3.6.0.tgz"
+  integrity sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==
 
 dayjs@^1.8.15:
   version "1.11.10"

@@ -16,6 +16,7 @@ import {
 import { Select } from "../../../components/Select";
 import { dbo_Categoria, CategoriaProps } from "../../../database/dbo_Categoria";
 import { InputDark } from "../../../components/Input";
+import { DateTimePicker } from "../../../components/DateTimePicker";
 
 const New: React.FC = () => {
   const { Colors } = useTheme();
@@ -74,7 +75,7 @@ const New: React.FC = () => {
             />
           </ContentBtnFilter>
           <InputDark
-            placeholder="Descricao da movimentação"
+            placeholder="Titulo da Movimentação"
             iconName="clipboard-outline"
             iconColor={Colors.Secondary[500]}
           />
@@ -84,6 +85,7 @@ const New: React.FC = () => {
             options={cat}
             onChangeSelect={(value) => setSelectedCategoria(value)}
           />
+          <DateTimePicker />
         </Content>
       </Scroll>
 

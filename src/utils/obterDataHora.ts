@@ -28,8 +28,17 @@ export const obterDataHora = () => {
 
   const horaAtual = `${horas}:${minutos}`;
   const dataSistema = `${ano}-${mes}-${dia}T${horas}:${minutos}:${segundos}.${milissegundos}Z`;
+  const dataAtualBR = `${dia}/${mes}/${ano}`;
+  const dataAtualENG = `${ano}/${mes}/${dia}`;
   const dataAtual = `${dia}/${mesFormat}/${ano}`;
   const dataHoraAtual = `${dia}/${mesFormat}/${ano} as ${horas}:${minutos}`;
 
-  return { dataHoraAtual, horaAtual, dataAtual, dataSistema };
+  return {
+    dataHoraAtual,
+    horaAtual,
+    dataAtual,
+    dataAtualBR,
+    dataAtualENG,
+    dataSistema,
+  };
 };
