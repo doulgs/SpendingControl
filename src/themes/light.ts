@@ -41,7 +41,7 @@ export const THEME_LIGHT = {
       600: "#46496c",
       700: "#32344e",
       800: "#1d1f31",
-      900: "#090916",
+      900: "#17181d",
     },
 
     Dark: {
@@ -52,7 +52,7 @@ export const THEME_LIGHT = {
       900: "#000000",
     },
 
-    Success: "#28a745",
+    Success: "#27ae60",
     Warning: "#ffc107",
     Error: "#dc3545",
   },
