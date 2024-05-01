@@ -10,6 +10,8 @@ import { Octicons } from "@expo/vector-icons";
 import Home from "../screens/app/Home";
 import Extract from "../screens/app/Extract";
 import New from "../screens/app/New";
+import Account from "../screens/app/Registrations/Account";
+import Category from "../screens/app/Registrations/Category";
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -18,11 +20,28 @@ export default function AppRoutes() {
   const { Colors } = useTheme();
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: Colors.Secondary[700],
+        headerStyle: {
+          backgroundColor: Colors.Dark[800],
+        },
+      }}
+    >
       <Stack.Screen
         name="StackHome"
         component={TabsRoutes}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Account"
+        component={Account}
+        options={{ headerTitle: "Cadastrar conta" }}
+      />
+      <Stack.Screen
+        name="Category"
+        component={Category}
+        options={{ headerTitle: "Cadastrar categoria" }}
       />
     </Stack.Navigator>
   );

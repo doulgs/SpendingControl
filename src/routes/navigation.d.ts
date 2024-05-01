@@ -6,6 +6,11 @@ export declare global {
       SignUp: undefined;
 
       Home: undefined;
+      New: undefined;
+      Extract: undefined;
+
+      Category: undefined;
+      Account: undefined;
     }
   }
 }
