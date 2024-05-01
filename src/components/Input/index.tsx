@@ -82,7 +82,7 @@ function InputDark({
   };
 
   const colorIcon = errorMessage ? Colors.Error : iconColor;
-  const colorText = errorMessage ? Colors.Error : Colors.Textcolor[700];
+  const colorText = errorMessage ? Colors.Error : Colors.Textcolor[300];
 
   return (
     <View>

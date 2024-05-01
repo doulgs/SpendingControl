@@ -17,7 +17,7 @@ export const InputText = styled.TextInput`
   flex: 1;
   padding: 10px 10px 10px 2px;
   font-size: ${(props) => props.theme.Size.md};
-  color: ${(props) => props.theme.Colors.Textcolor[700]};
+  color: ${(props) => props.theme.Colors.Textcolor[300]};
 `;
 export const ContainerIcon = styled.View`
   width: 40px;

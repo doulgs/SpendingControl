@@ -1,24 +1,30 @@
 import { TextInputProps } from "react-native";
-import { Mask } from "./styles";
+import { Mask, MessageError } from "./styles";
 import { useTheme } from "styled-components/native";
 
-type Props = TextInputProps & {};
+type Props = TextInputProps & {
+  errorMessage?: string;
+};
 
-const InputMask: React.FC<Props> = ({ ...rest }) => {
+const InputMask: React.FC<Props> = ({ errorMessage, ...rest }) => {
   const { Colors } = useTheme();
+  const colorText = errorMessage ? Colors.Error : Colors.Textcolor[300];
   return (
-    <Mask
-      type={"money"}
-      options={{
-        precision: 2,
-        separator: ",",
-        delimiter: ".",
-        unit: "R$",
-        suffixUnit: "",
-      }}
-      placeholderTextColor={Colors.Gray[500]}
-      {...rest}
-    />
+    <>
+      {errorMessage && <MessageError>{errorMessage}</MessageError>}
+      <Mask
+        type={"money"}
+        options={{
+          precision: 2,
+          separator: ",",
+          delimiter: ".",
+          unit: "R$",
+          suffixUnit: "",
+        }}
+        placeholderTextColor={Colors.Gray[500]}
+        {...rest}
+      />
+    </>
   );
 };
 
