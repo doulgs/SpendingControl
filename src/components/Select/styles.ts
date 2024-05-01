@@ -14,6 +14,11 @@ export const ContainerModal = styled.View`
   flex: 1;
   background-color: ${(props) => props.theme.Colors.Background[900]};
 `;
+export const ContainerBox = styled.View`
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+`;
 export const HeaderModal = styled.View`
   height: 70px;
   padding: 0 16px;
@@ -36,22 +41,20 @@ export const BodyModal = styled.View`
 `;
 export const Touchable = styled.TouchableOpacity`
   padding: 8px;
-  justify-content: space-between;
   align-items: center;
   flex-direction: row;
   border-width: 0.5px;
   margin: 8px;
   border-radius: ${(props) => props.theme.Size.sm};
-  background-color: ${(props) => props.theme.Colors.Dark[900]};
+  background-color: ${(props) => props.theme.Colors.Dark[800]};
 `;
-export const Box = styled.View`
-  margin: 8px;
-  width: 24px;
-  height: 24px;
-  border-radius: ${(props) => props.theme.Size.sm};
-  border-width: 0.5px;
+export const BoxIcon = styled.View`
   align-items: center;
   justify-content: center;
+  margin: 0 ${(props) => props.theme.Size.md};
+`;
+export const BoxInfo = styled.View`
+  flex: 1;
 `;
 export const Text = styled.Text`
   font-weight: bold;
@@ -64,4 +67,16 @@ export const TextHeader = styled.Text`
   font-style: italic;
   font-size: 18px;
   color: ${(props) => props.theme.Colors.Secondary[500]};
+`;
+export const FloatingBottao = styled.TouchableOpacity`
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  z-index: 99;
+  bottom: 25px;
+  right: 15px;
+  align-items: center;
+  justify-content: center;
+  border-radius: ${(props) => props.theme.Size.md};
+  background-color: ${(props) => props.theme.Colors.Secondary[500]};
 `;
