@@ -13,7 +13,11 @@ import {
   ModalView,
 } from "./styles";
 
-const DateTimePicker: React.FC = () => {
+interface DateTimePickerProps {
+  onDateChange: (date: string) => void;
+}
+
+const DateTimePicker: React.FC<DateTimePickerProps> = ({ onDateChange }) => {
   const { Colors } = useTheme();
   const [visibleDatePicker, setVisibleDatePicker] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<string>(
@@ -56,9 +60,10 @@ const DateTimePicker: React.FC = () => {
             <DatePicker
               mode="calendar"
               selected={DesformatDate(selectedDate)}
-              onSelectedChange={(dateString: string) =>
-                setSelectedDate(formatDate(dateString))
-              }
+              onSelectedChange={(dateString: string) => {
+                onDateChange(formatDate(dateString));
+                setSelectedDate(formatDate(dateString));
+              }}
               options={{
                 backgroundColor: Colors.Dark[800],
                 textHeaderColor: Colors.Secondary[500],
