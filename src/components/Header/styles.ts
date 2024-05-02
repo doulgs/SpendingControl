@@ -5,7 +5,6 @@ const STATUS_BAR_HEIGHT = StatusBar.currentHeight;
 const DIMENSIONS = Dimensions.get("screen").width;
 
 export const Container = styled.View`
-  flex: 1;
   height: ${185 + (STATUS_BAR_HEIGHT ?? 0)}px;
   background-color: ${(props) => props.theme.Colors.Dark[800]};
   border-bottom-left-radius: ${(props) => props.theme.Size.sm};
