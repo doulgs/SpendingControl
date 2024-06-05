@@ -9,6 +9,7 @@ import {
 import { Container } from "./styles";
 import { List } from "../../../components/List";
 import { Text } from "../../../components/Text";
+import { MovimentsList } from "../../../components/Layouts/Moviments-List";
 
 const Home: React.FC = () => {
   const { user } = useAuth();
@@ -30,7 +31,8 @@ const Home: React.FC = () => {
               setBalance(balance.totalBalance);
               setIncome(balance.totalIncome.Total);
               setExpanse(balance.totalExpanse.Total);
-              setMoviments(retorno);
+              const invertedList = retorno.reverse();
+              setMoviments(invertedList.slice(0, 17));
             }
           }
         } catch (error) {
@@ -41,21 +43,12 @@ const Home: React.FC = () => {
     }, [])
   );
 
-  const renderUser = (moviments: MovimentacaoProps) => {
-    return (
-      <Text>
-        {moviments.Descricao} - {moviments.Tipo} - {moviments.Valor} -{" "}
-        {moviments.Data} - {moviments.CategoriaHandle}
-      </Text>
-    );
-  };
-
   return (
     <Container>
       <Header>
         <Header.Balance Balance={Balance} Income={Income} Expense={Expanse} />
       </Header>
-      <List data={moviments} renderItem={renderUser} />
+      <MovimentsList data={moviments} />
     </Container>
   );
 };

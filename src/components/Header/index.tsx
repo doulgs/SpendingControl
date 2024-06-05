@@ -63,7 +63,7 @@ function HeaderBalance({ Balance = 0, Income = 0, Expense = 0 }: BalanceProps) {
         </BoxIcon>
         <Text>
           Saldo atual {`\n`}
-          <Text size={24}>{formatarParaMoeda(Balance)}</Text>
+          <Text size={24}>{formatarParaMoeda(Balance ?? 0)}</Text>
         </Text>
       </ContainerBalance>
       <ContentInfoMov>
@@ -73,7 +73,7 @@ function HeaderBalance({ Balance = 0, Income = 0, Expense = 0 }: BalanceProps) {
           </BoxIcon>
           <Text>
             Entradas {`\n`}
-            <Text>{formatarParaMoeda(Income)}</Text>
+            <Text>{formatarParaMoeda(Income ?? 0)}</Text>
           </Text>
         </ContainerIncome>
         <ContainerExpense>
@@ -82,7 +82,7 @@ function HeaderBalance({ Balance = 0, Income = 0, Expense = 0 }: BalanceProps) {
           </BoxIcon>
           <Text>
             Saidas {`\n`}
-            <Text>{formatarParaMoeda(Expense)}</Text>
+            <Text>{formatarParaMoeda(Expense ?? 0)}</Text>
           </Text>
         </ContainerExpense>
       </ContentInfoMov>

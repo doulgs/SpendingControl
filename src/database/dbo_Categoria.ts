@@ -44,7 +44,7 @@ export function dbo_Categoria() {
     }
   }
 
-  function search(handle: string) {
+  function buscar_pelo_handle(handle: string) {
     try {
       const statement = database.prepareSync(
         `SELECT * FROM Categoria WHERE Handle = $handle`
@@ -52,12 +52,19 @@ export function dbo_Categoria() {
       const result = statement.executeSync<CategoriaProps>({
         $handle: handle,
       });
-      return result.getFirstSync();
+
+      const resultado = result.getFirstSync();
+
+      if (resultado === null) {
+        return { Nome: "Indefinida", Descricao: "Indefinida" };
+      }
+
+      return resultado;
     } catch (error) {
       console.error("Erro ao buscar categoria:", error);
       throw new Error(`Erro ao buscar categoria: ${error}`);
     }
   }
 
-  return { create, all, search };
+  return { create, all, buscar_pelo_handle };
 }
