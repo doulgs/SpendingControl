@@ -1,15 +1,10 @@
-import React from "react";
-
-import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
-
-import { Input } from "../../../components/Input";
 import { Button } from "../../../components/Button";
-import { useTheme } from "styled-components/native";
-
-import { Container, Title } from "./styles";
+import { Input } from "../../../components/Input";
 import { useAuth } from "../../../contexts/authContext";
+import { Container, Title } from "./styles";
 
 type FormData = {
   email: string;

@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-type HomeProps = {};
+type SummaryProps = {};
 
-const Home: React.FC<HomeProps> = ({}) => {
+const Summary: React.FC<SummaryProps> = ({}) => {
   return (
     <>
       <Container></Container>
@@ -10,4 +10,4 @@ const Home: React.FC<HomeProps> = ({}) => {
   );
 };
 
-export { Home };
+export { Summary };

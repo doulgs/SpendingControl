@@ -1,4 +1,4 @@
-export const obterDataHora = () => {
+export const getDateTime = () => {
   const data = new Date();
 
   const meses = [

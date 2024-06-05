@@ -1,9 +1,9 @@
+import { getDateTime } from "@/utils/getDateTime";
 import { Ionicons } from "@expo/vector-icons";
 import { format, parse } from "date-fns";
 import { useState } from "react";
 import DatePicker from "react-native-modern-datepicker";
 import { useTheme } from "styled-components/native";
-import { obterDataHora } from "../../utils/obterDataHora";
 import { Text } from "../Text";
 import {
   ButtonClose,
@@ -21,7 +21,7 @@ const DateTimePicker: React.FC<DateTimePickerProps> = ({ onDateChange }) => {
   const { Colors } = useTheme();
   const [visibleDatePicker, setVisibleDatePicker] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<string>(
-    obterDataHora().dataAtualBR
+    getDateTime().dataAtualBR
   );
   const formatDate = (dateString: string): string => {
     const parsedDate = parse(dateString, "yyyy/MM/dd", new Date());

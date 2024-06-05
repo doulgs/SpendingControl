@@ -12,7 +12,6 @@ export type MovimentacaoProps = {
   UsuarioHandle: number; // Adicionando a coluna UsuarioHandle
   Created_at?: string;
   Updated_at?: string;
-  VersaoSistema?: string;
 };
 
 type GetSum = {
@@ -26,9 +25,9 @@ export function dbo_Movimentacao() {
     try {
       const statement = database.prepareSync(
         `INSERT INTO Movimentacao
-          (Tipo, Valor, Descricao, Data, CategoriaHandle, ContaHandle, UsuarioHandle, VersaoSistema)
+          (Tipo, Valor, Descricao, Data, CategoriaHandle, ContaHandle, UsuarioHandle)
          VALUES
-          (?, ?, ?, ?, ?, ?, ?, ?)`
+          (?, ?, ?, ?, ?, ?, ?)`
       );
 
       statement.executeSync([
@@ -39,7 +38,6 @@ export function dbo_Movimentacao() {
         movimentacao.CategoriaHandle || "",
         movimentacao.ContaHandle || "",
         movimentacao.UsuarioHandle,
-        movimentacao.VersaoSistema ?? "1.0",
       ]);
 
       console.log("Movimentação --> ", "Novo registro inserido com sucesso!");

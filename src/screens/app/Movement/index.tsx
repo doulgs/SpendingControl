@@ -1,8 +1,8 @@
 import { Container } from "./styles";
 
-type HomeProps = {};
+type MovementProps = {};
 
-const Home: React.FC<HomeProps> = ({}) => {
+const Movement: React.FC<MovementProps> = ({}) => {
   return (
     <>
       <Container></Container>
@@ -10,4 +10,4 @@ const Home: React.FC<HomeProps> = ({}) => {
   );
 };
 
-export { Home };
+export { Movement };

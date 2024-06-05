@@ -8,7 +8,6 @@ export type ContaProps = {
   UsuarioHandle: number;
   Created_at?: string;
   Updated_at?: string;
-  VersaoSistema?: string;
 };
 
 export function dbo_Conta() {
@@ -18,16 +17,15 @@ export function dbo_Conta() {
     try {
       const statement = database.prepareSync(
         `INSERT INTO Conta
-          (Nome, Saldo, UsuarioHandle, VersaoSistema)
+          (Nome, Saldo, UsuarioHandle)
          VALUES
-          (?, ?, ?, ?)`
+          (?, ?, ?)`
       );
 
       statement.executeSync([
         conta.Nome,
         conta.Saldo ?? 0,
         conta.UsuarioHandle,
-        conta.VersaoSistema ?? "1.0",
       ]);
 
       console.log("Conta --> ", "Novo registro inserido com sucesso!");

@@ -7,7 +7,6 @@ export type CategoriaProps = {
   Descricao: string;
   Created_at?: string;
   Updated_at?: string;
-  VersaoSistema?: string;
 };
 
 export function dbo_Categoria() {
@@ -17,16 +16,12 @@ export function dbo_Categoria() {
     try {
       const statement = database.prepareSync(
         `INSERT INTO Categoria
-          (Nome, Descricao, VersaoSistema)
+          (Nome, Descricao)
          VALUES
-          (?, ?, ?)`
+          (?, ?)`
       );
 
-      statement.executeSync([
-        categoria.Nome,
-        categoria.Descricao,
-        categoria.VersaoSistema ?? "1.0",
-      ]);
+      statement.executeSync([categoria.Nome, categoria.Descricao]);
 
       console.log("Categoria --> ", "Novo registro inserido com sucesso!");
     } catch (error) {

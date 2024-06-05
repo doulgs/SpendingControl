@@ -1,21 +1,12 @@
-import React, { useCallback, useRef } from "react";
+import { Text } from "@/components/Text";
 import BottomSheet from "@gorhom/bottom-sheet";
-import SignIn from "../SignIn";
-
-import {
-  ConatainerForm,
-  Container,
-  ConatainerImage,
-  Image,
-  Title,
-  SubTitle,
-} from "./styles";
-
-import { Button } from "../../../components/Button";
 import { useNavigation } from "@react-navigation/native";
-
-import { useTheme } from "styled-components/native";
+import { useCallback, useRef } from "react";
 import { Keyboard } from "react-native";
+import { useTheme } from "styled-components/native";
+import { Button } from "../../../components/Button";
+import SignIn from "../SignIn";
+import { ConatainerForm, ConatainerImage, Container, Image } from "./styles";
 
 const Greeting: React.FC = ({}) => {
   const { Colors } = useTheme();
@@ -30,7 +21,7 @@ const Greeting: React.FC = ({}) => {
 
   return (
     <>
-      <Container>
+      <Container source={require("../../../assets/images/background-auth.png")}>
         <ConatainerImage>
           <Image
             animation={"zoomIn"}
@@ -41,8 +32,10 @@ const Greeting: React.FC = ({}) => {
         </ConatainerImage>
 
         <ConatainerForm animation={"fadeInUp"} duration={2000}>
-          <Title>Monitore e Organize seus gastos de qualquer lugar.</Title>
-          <SubTitle>Faça login para começar</SubTitle>
+          <Text weight="700" color="#000" size={28}>
+            Monitore e Organize seus gastos de qualquer lugar.
+          </Text>
+          <Text weight="600">Faça login para começar</Text>
 
           <Button title="Acessar" widthPercent={80} onPress={openSignIn} />
 

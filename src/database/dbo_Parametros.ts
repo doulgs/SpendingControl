@@ -6,7 +6,6 @@ export type ParametrosProps = {
   Valor: string;
   Created_at?: string;
   Updated_at?: string;
-  VersaoSistema?: string;
 };
 
 export function dbo_Parametros() {
@@ -16,16 +15,12 @@ export function dbo_Parametros() {
     try {
       const statement = database.prepareSync(
         `INSERT INTO Parametros
-          (Descricao, Valor, VersaoSistema)
+          (Descricao, Valor)
          VALUES
-          (?, ?, ?)`
+          (?, ?)`
       );
 
-      statement.executeSync([
-        parametros.Descricao,
-        parametros.Valor,
-        parametros.VersaoSistema ?? "1.0",
-      ]);
+      statement.executeSync([parametros.Descricao, parametros.Valor]);
 
       console.log("Parâmetro --> ", "Novo registro inserido com sucesso!");
     } catch (error) {

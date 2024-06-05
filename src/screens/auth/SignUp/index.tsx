@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
-
-import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-
-import { Input } from "../../../components/Input";
-import { Button } from "../../../components/Button";
-import { useTheme } from "styled-components/native";
-
-import { Container, Scroll, Title } from "./styles";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { Alert } from "react-native";
-import { useAuth } from "../../../contexts/authContext";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { useTheme } from "styled-components/native";
+import * as yup from "yup";
+import { Button } from "@/components/Button";
+import { Input } from "@/components/Input";
+import { useAuth } from "@/contexts/authContext";
+import { Container, Scroll, Title } from "./styles";
+import { Text } from "@/components/Text";
 
 type FormData = {
   apelido: string;
@@ -65,7 +63,7 @@ const SignUp: React.FC = () => {
   return (
     <Scroll>
       <Container>
-        <Title>Dados Pessoas</Title>
+        <Text>Dados Pessoais</Text>
         <Controller
           control={control}
           name="apelido"
@@ -109,7 +107,7 @@ const SignUp: React.FC = () => {
           )}
         />
 
-        <Title>Cadastro</Title>
+        <Text>Dados Cadastrais</Text>
         <Controller
           control={control}
           name="email"

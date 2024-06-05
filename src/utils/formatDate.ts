@@ -1,4 +1,4 @@
-export function formatarData(dataHoraSistema: string) {
+export function formatDate(dataHoraSistema: string) {
   // Divide a string em partes
   const partes = dataHoraSistema.split("T");
   const dataPartes = partes[0].split("-");

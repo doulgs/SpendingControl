@@ -30,7 +30,7 @@ declare module "styled-components/native" {
         800: string;
         900: string;
       };
-      Gray: {
+      Purple: {
         50: string;
         100: string;
         200: string;

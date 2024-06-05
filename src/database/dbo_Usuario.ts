@@ -12,7 +12,6 @@ export type UsuarioProps = {
   Ativo?: number;
   Created_at?: string;
   Updated_at?: string;
-  VersaoSistema?: string;
 };
 
 export function dbo_Usuario() {
@@ -22,9 +21,9 @@ export function dbo_Usuario() {
     try {
       const statement = database.prepareSync(
         `INSERT INTO Usuario
-          (Apelido, Nome, Telefone, Email, Senha, Tema, Ativo, VersaoSistema)
+          (Apelido, Nome, Telefone, Email, Senha, Tema, Ativo)
          VALUES
-          (?, ?, ?, ?, ?, ?, ?, ?)`
+          (?, ?, ?, ?, ?, ?, ?)`
       );
 
       statement.executeSync([
@@ -35,7 +34,6 @@ export function dbo_Usuario() {
         usuario.Senha,
         usuario.Tema ?? "LIGHT",
         usuario.Ativo ?? 1,
-        usuario.VersaoSistema ?? "1.0",
       ]);
 
       console.log("Usuário --> ", "Novo registro inserido com sucesso!");

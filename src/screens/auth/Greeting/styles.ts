@@ -1,9 +1,14 @@
+import { Dimensions } from "react-native";
 import * as Animatable from "react-native-animatable";
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+const HEIGHT = Dimensions.get("screen").height;
+const WIDTH = Dimensions.get("screen").width;
+
+export const Container = styled.ImageBackground`
   flex: 1;
-  background-color: ${(props) => props.theme.Colors.Background[900]};
+  height: ${HEIGHT}px;
+  width: ${WIDTH}px;
 `;
 
 export const ConatainerImage = styled.View`
@@ -27,17 +32,5 @@ export const ConatainerForm = styled(Animatable.View)`
   border-top-left-radius: ${(props) => props.theme.Size.xl};
   padding: ${(props) => props.theme.Size.md};
   gap: ${(props) => props.theme.Size.lg};
-  background-color: ${(props) => props.theme.Colors.Background[200]};
-`;
-
-export const Title = styled.Text`
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-`;
-
-export const SubTitle = styled.Text`
-  text-align: center;
-  font-size: 18px;
-  color: ${(props) => props.theme.Colors.Background[500]};
+  background-color: rgba(255, 255, 255, 0.5);
 `;

@@ -5,7 +5,6 @@ export type AtualizacoesProps = {
   Versao: string;
   Descricao: string;
   Data?: string;
-  VersaoSistema?: string;
 };
 
 export function dbo_Atualizacoes() {
@@ -15,16 +14,15 @@ export function dbo_Atualizacoes() {
     try {
       const statement = database.prepareSync(
         `INSERT INTO Atualizacoes
-          (Versao, Descricao, Data, VersaoSistema)
+          (Versao, Descricao, Data)
          VALUES
-          (?, ?, ?, ?)`
+          (?, ?, ?)`
       );
 
       statement.executeSync([
         atualizacao.Versao,
         atualizacao.Descricao,
         atualizacao.Data ?? new Date().toISOString(),
-        atualizacao.VersaoSistema ?? "1.0",
       ]);
 
       console.log("Atualização --> ", "Novo registro inserido com sucesso!");
